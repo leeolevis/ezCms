@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<partial name="_cookieConsentPartial" />
+<div class="layui-layout layui-layout-admin">
+    <!--头部导航开始-->
+    <div class="layui-header">
+        <div class="layui-logo">简客CRM测试</div>
+        <!-- 头部区域 -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="layui-icon" style="color: #eeeeee;">&#xe614;</i> 左侧设置</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">用户管理</a></dd>
+                    <dd><a href="">捐赠</a></dd>
+                    <dd><a href="">数据导出</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <!-- <img src="" class="layui-nav-img"> -->
+                    <i class="layui-icon" style="color:#fff;">&#xe612;</i> Admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/staff/info" target="bodyiframe">用户个人信息</a></dd>
+                    <dd><a href="javascript:(0);" onclick="Fun.openChangPWD();return false;">修改登录密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="layui-icon" style="color: #eeeeee;">&#xe614;</i> 系统菜单</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/company/info" target="bodyiframe">主帐号资料</a></dd>
+                    <dd><a href="/data/list" target="bodyiframe">数据下载</a></dd>
+                    <dd><a href="/app/download" target="bodyiframe">手机App下载</a></dd>
+                    <dd><a href="javascript:(0);" onclick="Fun.openContribute();return false;">欢迎捐赠</a></dd>
+                    <dd><a href="javascript:(0);" onclick="Fun.openFeedback();return false;">意见反馈</a></dd>
+                    <dd><a href="http://www.jkcrms.com" target="_blank">访问官网</a></dd>
+                    <dd><a href="/help/index" target="bodyiframe">帮助中心</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"> </li>
+            <li class="layui-nav-item"><a href="/logout"><i class="layui-icon" style="color:#fff;">&#xe602;</i> 退出</a></li>
+        </ul>
+    </div>  <!--左侧导航开始-->
+    <div href="javascript:;" id="site-side-tree-opc" class="open"><i class="layui-icon">&#xe603;</i></div>
+    <div class="layui-side site-tree">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域 -->
+            <ul class="layui-tree">
+                <li><h2><i class="layui-icon" style="color: #009688;">&#xe68e;</i> 工作台</h2></li>
+                <li class="site-tree-noicon ">
+                    <a href="/kanban/index" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>首页看板</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/home/about" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>任务动弹日程</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/home/contact" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>动弹速览</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/home/privacy" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>任务速览</cite>
+                    </a>
+                </li>
+                <li><h2><i class="layui-icon" style="color: #009688;">&#xe63c;</i> 客户资料</h2></li>
+                <li class="site-tree-noicon ">
+                    <a href="/customer/view" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>客户资料视窗</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/customer" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>客户资料速览</cite>
+                    </a>
+                </li>
+                <li><h2><i class="layui-icon" style="color: #009688;">&#xe63a;</i> 联系人</h2></li>
+                <li class="site-tree-noicon ">
+                    <a href="/contacts/view" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>联系人视窗</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/contacts" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>联系人速览</cite>
+                    </a>
+                </li>
+                <li><h2><i class="layui-icon" style="color: #009688;">&#xe857;</i> 机会/项目</h2></li>
+                <li class="site-tree-noicon ">
+                    <a href="/opportunity/view" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>机会/项目视窗</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/opportunity" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>机会/项目速览</cite>
+                    </a>
+                </li>
+                <li><h2><i class="layui-icon" style="color: #009688;">&#xe600;</i> 团队成员</h2></li>
+                <li class="site-tree-noicon ">
+                    <a href="/staff/view" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>团队成员视窗</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/staff" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>团队成员速览</cite>
+                    </a>
+                </li>
+                <li class="site-tree-noicon ">
+                    <a href="/staff/locations" class="J_menuItem">
+                        <cite><i class="layui-icon" style="color: #dddddd;font-size: 12px;">&#xe623;</i>成员位置记录</cite>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>  <!--主体内容区开始-->
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="clildFrame">
+            <iframe id="bodyiframe" name="bodyiframe" class="J_iframe" src="/Home/About"></iframe>
+        </div>
+    </div>  <!--页脚区开始-->
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © ezCrm <em> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=9701792&site=qq&menu=yes" style="color: #bbbbbb;font-size: 12px">在线客服QQ:9701792</a></em>
+    </div>
+</div>

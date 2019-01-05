@@ -1,0 +1,232 @@
+﻿@{
+    ViewData["Title"] = "登录";
+}
+
+<script>
+    var nodeIndex = 0;//Tree选中节点
+    var nodeName = '';
+    var sortData = { field: 'pid', type: 'asc' }
+</script>
+
+<div class="layui-row">
+    <div class="layui-col-xs2 layadmin-homepage-shadow layui-card-body">
+        <ul id="leftTree"></ul>
+    </div>
+    <div class="layui-col-xs10">
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto em-right">
+                <div class="layui-form-item  em-left">
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-btn-admin layui-btn-theme" data-type="add" id="addBtn">新增数据</button>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <input type="text" name="loginname" placeholder="请输入" id="searchName" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-btn-admin layui-btn-theme" id="searchBtn">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <table class="layui-table" id="DictionaryTable" lay-data="{id:'DictionaryTable'}" lay-filter="DictionaryFilter">
+                    <thead>
+                        <tr>
+                            <th lay-data="{fixed: 'left', align:'center', toolbar: '#toolBar'}">工具栏</th>
+                            <th lay-data="{field:'pid', align:'center',templet: '#pName'}">父级</th>
+                            <th lay-data="{field:'name', align:'center'}">名称</th>
+                            <th lay-data="{field:'val', align:'center'}">内容</th>
+                            <th lay-data="{field:'code',align:'center'}">代码</th>
+                            <th lay-data="{field:'type', align:'center'}">类型</th>
+                            <th lay-data="{field:'isystem', align:'center'}">系统字典</th>
+                            <th lay-data="{field:'modifyon',align:'center'}">最后修改时间</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <script type="text/html" id="pName">
+            {{#  if(d.pid === null||d.pid ===''||d.pid ===0||d.name===nodeName){ }}
+            <span style="font-size:14px; color: green;"><i class="layui-icon" style="font-size: 14px; color: green;">&#xe641;</i>&nbsp根节点</span>
+            {{#  } else { }}
+            <span style="font-size:14px; color: dodgerblue;"><i class="layui-icon" style="font-size: 14px; color: dodgerblue;">&#xe641;</i>&nbsp子节点</span>
+            {{#  } }}
+        </script>
+
+        <script type="text/html" id="Name">
+            {{#  var fn1 = function(){ return d.name;}; }}
+            <a href="#" class="layui-table-link" lay-event="detail">{{ fn1()}}</a>
+        </script>
+
+        <script type="text/html" id="toolBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+        </script>
+    </div>
+</div>
+
+@section Scripts{
+<script>
+    //function addDictionary(nodeIndex) {
+    //    var index = layer.open({
+    //        type: 2,
+    //        title: '新增权限点',
+    //        content: 'dictionary/adddictionary?pid=' + nodeIndex + '&pname=' + nodeName,
+    //        area: ['100%', '100%'],
+    //        maxmin: true,
+    //        success: function (layero, index) {
+    //            //隐藏打开窗口按钮
+    //            var body = layer.getChildFrame('body', index);
+    //            //body.contents().find("#type").val(nodeName);
+    //        }
+    //    });
+    //    layer.full(index);
+    //}
+
+    //function editDictionary(id, pname) {
+    //    var index = layer.open({
+    //        type: 2,
+    //        title: '权限点详情',
+    //        content: 'dictionary/editDictionary?id=' + id + '&pname=' + pname,
+    //        area: ['100%', '100%'],
+    //        maxmin: true
+    //    });
+    //    layer.full(index);
+    //}
+
+    //function delDictionary(id) {
+    //    var closeConfirm = function (data) {
+    //        if (data) {
+    //            console.log('delDictionary');
+    //            loadGrid()
+    //            ShowTip("删除成功", 6);
+    //        } else {
+    //            ShowTip("删除失败", 6)
+    //        }
+    //    }
+    //    confirmDel("确认删除该数据吗？", "dictionary/DeleteDictionary", { id: id }, closeConfirm)
+    //}
+
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'tree', 'table', 'form'], function () {
+        var $ = layui.jquery, table = layui.table;
+
+        loadGrid();
+        //Tree加载
+        $.getJSON("dictionary/GetTreeData", function (result) {
+            layui.tree({
+                elem: '#leftTree' //传入元素选择器
+                , nodes: result
+                , click: function (node) {//node即为当前点击的节点数据
+                    nodeIndex = node.id;
+                    nodeName = node.name;
+                    loadGrid();
+                }
+            });
+        });
+
+        //Grid加载
+        function loadGrid() {
+            table.reload('DictionaryTable', {
+                text: { none: '暂无相关数据' },
+                page: true,
+                url: 'dictionary/GetData',
+                method: 'post',
+                height: 'full-120',
+                initSort: sortData,
+                where: {
+                    sortField: sortData.field,
+                    sortType: sortData.type,
+                    name: $("#searchName").val(),
+                    index: nodeIndex
+                }
+            });
+        }
+
+        //监听工具条
+        table.on('tool(DictionaryFilter)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                var index = layer.open({
+                    type: 2,
+                    title: '查看权限点',
+                    content: 'dictionary/DetailDictionary?id=' + data.id + '&pname=' + nodeName,
+                    area: ['100%', '100%'],
+                    maxmin: true,
+                    success: function (layero, index) {
+                        //隐藏打开窗口按钮
+                        var body = layer.getChildFrame('body', index);
+                        body.contents().find("#btnSave").hide();
+                    }
+                });
+                layer.full(index);
+            } else if (obj.event === 'edit') {
+                var index = layer.open({
+                    type: 2,
+                    title: '修改权限点',
+                    content: 'dictionary/EditDictionary?id=' + data.id + '&pname=' + nodeName,
+                    area: ['100%', '100%'],
+                    maxmin: true
+                });
+                layer.full(index);
+            }
+            else if (obj.event === 'del') {
+                layer.confirm("确认删除该数据吗？", { icon: layui.setter.icon.Question, title: '提示' },
+                    function (index) {      //确认后执行的操作
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "dictionary/DeleteDictionary",
+                            data: { id: data.id },
+                            success: function (data) {
+                                if (data.result) {
+                                    ShowTip(data.message, layui.setter.icon.Joy);
+                                    CloseMessage();
+                                }
+                                else
+                                    ShowTip(data.message, layui.setter.icon.Sad);
+                            }
+                        });
+                    });
+            }
+        });
+
+        function addDictionary(nodeIndex) {
+            var index = layer.open({
+                type: 2,
+                title: '新增权限点',
+                content: 'dictionary/adddictionary?pid=' + nodeIndex + '&pname=' + nodeName,
+                area: ['100%', '100%'],
+                maxmin: true,
+                success: function (layero, index) {
+                    //隐藏打开窗口按钮
+                    var body = layer.getChildFrame('body', index);
+                    body.contents().find("#type").val(nodeName);
+                }
+            });
+            layer.full(index);
+        }
+
+        //新增
+        $("#addBtn").on("click", function () {
+            addDictionary(nodeIndex);
+        })
+
+        //回车搜索
+        $('#searchName').keydown(function (e) {
+            if (e.keyCode == 13) { loadGrid(); }
+        });
+
+        //搜索
+        $("#searchBtn").on("click", function () {
+            loadGrid();
+        });
+    });
+</script>
+}

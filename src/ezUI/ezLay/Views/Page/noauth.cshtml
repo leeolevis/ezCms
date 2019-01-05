@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "没有权限";
+}
+
+<div class="layui-fluid">
+    <div class="layadmin-tips">
+        <i class="layui-icon" face>&#xe69c;</i>
+
+        <div class="layui-text" style="font-size: 20px;">
+            没有权限
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        layui.config({
+            base: '/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index']);
+    </script>
+}

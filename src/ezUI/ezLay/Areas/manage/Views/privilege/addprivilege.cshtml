@@ -1,0 +1,97 @@
+﻿@section Heads{
+    <link href="~/css/form.css" rel="stylesheet" />
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ezModel.ViewModel.privilegeModel
+<div class="layui-main layui-container">
+    <div class="layui-contentall">
+        <form class="layui-form" asp-antiforgery="true" autocomplete="off">
+            <div class="layui-main-one">
+                <input type="hidden" asp-for="pid" />
+                @if (Model.pid > 0)
+                {
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">父级</label>
+                        <div class="layui-input-inline">
+                            <input type="text" asp-for="pname" readonly class="layui-input layui-disabled">
+                            <div>
+                                <div class="valid-tips"><span class="valid-tips-span"></span></div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="layui-btn layui-btn-normal" id="btnRemoveParent"><i class="layui-icon"></i> 设为根节点</button>
+
+                    </div>
+                }
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-inline">
+                        <select asp-for="type" id="type" name="type" lay-search>
+                            <option value="">请选择</option>
+                        </select>
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="type"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="name" placeholder="请输入名称" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="name"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">资源</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="resource" placeholder="请输入资源" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="resource"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="remark" placeholder="请输入备注" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="remark"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-content-btn">
+                <div class="layui-input-block">
+                    <button type="submit" id="btnSave" class="layui-btn layui-btn-theme">确认保存</button>
+                    <button type="button" onclick="CloseLayer()" class="layui-btn layui-btn-primary">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+
+        layui.config({
+            base: '/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+            }).use(['index', 'form'], function () {
+                var form = layui.form;
+                SelectDictionary("PrivilegeType", "type", "val", "name", '', form);
+        });
+
+
+        $("#btnRemoveParent").on("click", function (index) {
+            layer.confirm('请问要设置为根节点吗？', function () {
+                $("#pid").val("0");
+                $("#pname").val("");
+                layer.closeAll('dialog');
+            });
+        })
+    </script>
+}

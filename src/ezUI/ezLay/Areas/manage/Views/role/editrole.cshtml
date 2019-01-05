@@ -1,0 +1,111 @@
+﻿@section Heads{
+    <link href="~/css/jstree.css" rel="stylesheet" />
+    <link href="~/css/form.css" rel="stylesheet" />
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, ezLay
+@model ezModel.ViewModel.roleModel
+<div class="layui-main layui-container layui-outBg">
+    <div class="layui-contentall">
+        <form class="layui-form" asp-antiforgery="true" autocomplete="off">
+            <input type="hidden" asp-for="cname" />
+            <input type="hidden" asp-for="id" />
+            <div class="layui-main-one">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="name" placeholder="请输入角色内容" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="name"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">默认页面</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="defaulturl" placeholder="请输入默认跳转页面" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="defaulturl"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="remark" placeholder="请输入备注内容" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="remark"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div id="divPermissions">
+                        <label class="layui-form-label">权限</label>
+                        <div class="layui-input-inline">
+                            <div jstree-for="Permissions"></div>
+                        </div>
+                        <span class="layui-form-mid" asp-validation-for="Permissions"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-content-btn">
+                <div class="layui-input-block">
+                    <button type="submit" id="btnSave" class="layui-btn layui-btn-theme" permission-for="Setting/Privilege/EditPrivilege">确认保存</button>
+                    <button type="button" onclick="CloseLayer()" class="layui-btn layui-btn-primary">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/jstree.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        // JsTree binding
+        (function () {
+            var trees = $('.js-tree-view');
+            for (var i = 0; i < trees.length; i++) {
+                var tree = $(trees[i]).jstree({
+                    'core': {
+                        'themes': {
+                            'icons': false
+                        }
+                    },
+                    'plugins': [
+                        'checkbox'
+                    ],
+                    'checkbox': {
+                        'keep_selected_style': false
+                    }
+                });
+
+                tree.on('ready.jstree', function (e, data) {
+                    var selected = $(this).prev('.js-tree-view-ids').children();
+                    for (var j = 0; j < selected.length; j++) {
+                        data.instance.select_node(selected[j].value, false, true);
+                    }
+
+                    data.instance.open_node($.makeArray(tree.find('> ul > li')), null, null);
+                    data.instance.element.show();
+                });
+            }
+
+            $(document).on('submit', 'form', function () {
+                var trees = $(this).find('.js-tree-view');
+                for (var i = 0; i < trees.length; i++) {
+                    var tree = $(trees[i]).jstree();
+                    var ids = tree.element.prev('.js-tree-view-ids');
+                    ids.empty();
+                    var selected = tree.get_selected();
+                    for (var j = 0; j < selected.length; j++) {
+                        var node = tree.get_node(selected[j]);
+                        if (node.li_attr.id) {
+                            ids.append('<input type="hidden" value="' + node.li_attr.id + '" name="' + tree.element.attr('for') + '" />');
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
+}

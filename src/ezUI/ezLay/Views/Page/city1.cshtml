@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "登录";
+}
+
+<form class="layui-form layui-form-pane" action="javascript:;">
+    <div class="layui-input-inline">
+        <select name="province" lay-filter="province" class="province">
+            <option value="">请选择省</option>
+        </select>
+    </div>
+    <div class="layui-input-inline">
+        <select name="city" lay-filter="city" disabled>
+            <option value="">请选择市</option>
+        </select>
+    </div>
+    <div class="layui-input-inline">
+        <select name="area" lay-filter="area" disabled>
+            <option value="">请选择县/区</option>
+        </select>
+    </div>
+</form>
+@section Scripts{
+    <script type="text/javascript">
+        layui.config({
+            base: '/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'jquery', 'address'], function () {
+            var address = layui.address(),
+                $ = layui.jquery;
+        });
+    </script>
+}

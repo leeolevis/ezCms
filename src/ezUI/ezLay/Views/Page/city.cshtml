@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "登录";
+}
+
+<fieldset class="layui-elem-field" style="margin: 20px;">
+    <legend>省市联动</legend>
+    <div class="layui-field-box">
+        <form class="layui-form layui-form-pane" action="javascript:;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择地区</label>
+                <div class="layui-input-inline">
+                    <select name="P1" lay-filter="province">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="C1" lay-filter="city">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="A1" lay-filter="area">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+<fieldset class="layui-elem-field" style="margin: 20px;">
+    <legend>选择结果</legend>
+    <div class="layui-field-box">
+        <form class="layui-form" action="javascript:;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">您选择了：</label>
+                <label class="layui-form-label pca-label-province"></label>
+                <label class="layui-form-label pca-label-city"></label>
+                <label class="layui-form-label pca-label-area"></label>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+@section Scripts{
+    <script type="text/javascript">
+        layui.config({
+            base: '/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+            }).use(['index', 'form','citys'], function () {
+                pca.init('select[name=P1]', 'select[name=C1]', 'select[name=A1]');
+            });        
+    </script>
+}

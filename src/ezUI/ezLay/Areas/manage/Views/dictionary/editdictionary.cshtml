@@ -1,0 +1,93 @@
+﻿@section Heads{
+    <link href="~/css/form.css" rel="stylesheet" />
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ezModel.ViewModel.dictionaryModel
+<div class="layui-main layui-container layui-outBg">
+    <div class="layui-contentall">
+        <form class="layui-form" asp-antiforgery="true" autocomplete="off">
+            <div class="layui-main-one">
+                <input type="hidden" asp-for="ccode" />
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="name" placeholder="请输入名称" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="name"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="val" placeholder="请输入内容" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="val"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">代码</label>
+                    <div class="layui-input-inline">
+                        @if (Model.isystem)
+                        {
+                            <input type="text" asp-for="code" placeholder="请输入字典代码" class="layui-input layui-disabled" readonly />
+                        }
+                        else
+                        {
+                            <input type="text" asp-for="code" placeholder="请输入字典代码" class="layui-input" />
+                        }
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="code"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-inline">
+                        <input type="text" asp-for="remark" placeholder="请输入备注" class="layui-input">
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="remark"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">系统字典</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" asp-for="isystem" style="float:left" />
+                        <span class="layui-edge-top">选中后代码不可修改</span>
+                        <div>
+                            <div class="valid-tips"><span class="valid-tips-span" asp-validation-for="isystem"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-content-btn">
+                <div class="layui-input-block">
+                    <button type="submit" id="btnSave" class="layui-btn layui-btn-theme" permission-for="Setting/Privilege/EditPrivilege">确认保存</button>
+                    <button type="button" onclick="CloseLayer()" class="layui-btn layui-btn-primary">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        layui.config({
+            base: '/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'form'], function () {
+
+        });
+
+        $("#btnRemoveParent").on("click", function (index) {
+            layer.confirm('请问要设置为根节点吗？', function () {
+                $("#type").val("");
+                layer.closeAll('dialog');
+            });
+        })
+    </script>
+}

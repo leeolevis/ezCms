@@ -1,0 +1,572 @@
+﻿@{
+    ViewData["Title"] = "KanBan";
+}
+
+
+<style>
+    body {
+        background-color: #F6F6F6
+    }
+
+    .t-num {
+        font-size: 36px;
+        font-weight: 500;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .layui-card-header .title {
+        font-size: 16px;
+    }
+
+    .layui-card-header .layui-icon {
+        line-height: initial;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -7px;
+        color: #999999;
+    }
+
+    .layui-card-footer {
+        padding: 5px;
+        border-top: 1px solid #f6f6f6;
+    }
+
+        .layui-card-footer p {
+            font-size: 12px;
+            color: #c2c2c2;
+        }
+</style>
+<div style="padding: 15px;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md4">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span class="title">我的客户</span><a href="/customer/view"><i class="layui-icon">&#xe65b;</i></a></div>
+                        <div class="layui-card-body"><p class="t-num" style="color: #009688">13</p></div>
+                        <div class="layui-card-footer"><p>最新加入:2018-06-14 19:32</p></div>
+                    </div>
+                </div>
+                <div class="layui-col-md4">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span class="title">我的机会/项目</span><a href="/opportunity/view"><i class="layui-icon">&#xe65b;</i></a></div>
+                        <div class="layui-card-body"><p class="t-num" style="color: #1E9FFF">10</p></div>
+                        <div class="layui-card-footer"><p>最新加入:2018-06-14 20:00</p></div>
+                    </div>
+                </div>
+                <div class="layui-col-md4">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span class="title">我的动弹</span><a href="/activity"><i class="layui-icon">&#xe65b;</i></a></div>
+                        <div class="layui-card-body"><p class="t-num" style="color: #FF5722">26</p></div>
+                        <div class="layui-card-footer"><p>最新加入:2018-06-14 23:57</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span class="title">热门客户</span></div>
+                        <div class="layui-card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>客户名称</th>
+                                            <th>地址</th>
+                                            <th width="140px">建立时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16816');">皇安尼建筑装潢</a></td>
+                                            <td>江苏南通如皋市采经镇采经一村</td>
+                                            <td>2018-06-14 10:31</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16820');">南新建筑装潢</a></td>
+                                            <td>江苏省南通市通州区光明镇三元里10号</td>
+                                            <td>2018-06-14 19:32</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16818');">通锦康装饰</a></td>
+                                            <td>南通市长兴南路1378号通天苑1104室</td>
+                                            <td>2018-06-14 19:28</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16817');">苏城鑫建筑</a></td>
+                                            <td>江苏南通市海兴市兴东镇马台新街9号</td>
+                                            <td>2018-06-14 19:26</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16819');">长胜虹幕墙装饰工程</a></td>
+                                            <td>江苏南通市通州区起明镇光明南路81号</td>
+                                            <td>2018-06-14 19:30</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16807');">东莞市企石艺轩</a></td>
+                                            <td>东莞市企石大和路横街365号</td>
+                                            <td>2018-06-13 22:07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16812');">巴图装饰工程</a></td>
+                                            <td>江苏南通市兴泰北路1180号</td>
+                                            <td>2018-06-14 10:10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16814');">正大建筑装潢</a></td>
+                                            <td>江苏海门市刘家镇大江工业区3幢306室</td>
+                                            <td>2018-06-14 10:25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16811');">南通安丽泰装饰工程</a></td>
+                                            <td>江苏省南通市崇川区文旗街道岳家桥社区18组</td>
+                                            <td>2018-06-14 10:08</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailCustomer('16813');">天威建筑装饰</a></td>
+                                            <td>江苏南通市大江北路899号大都汇1905室</td>
+                                            <td>2018-06-14 10:23</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span class="title">热门机会/项目</span></div>
+                        <div class="layui-card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>机会/项目名称</th>
+                                            <th>预算</th>
+                                            <th>结束日期</th>
+                                            <th width="140px">建立时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16812');">南苑明皇会所装修</a></td>
+                                            <td>500万</td>
+                                            <td>2018-06-30</td>
+                                            <td>2018-06-14 19:43</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16809');">春意隆农贸市场旧线路改造</a></td>
+                                            <td>60万</td>
+                                            <td>2018-06-30</td>
+                                            <td>2018-06-14 10:55</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16808');">安阳水果吧光源</a></td>
+                                            <td>10万</td>
+                                            <td>2018-06-23</td>
+                                            <td>2018-06-14 10:45</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16814');">长城酒店外墙装饰灯工程</a></td>
+                                            <td>20万</td>
+                                            <td>2018-06-23</td>
+                                            <td>2018-06-14 19:48</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16811');">大明路13号眼博眼镜店</a></td>
+                                            <td>15万</td>
+                                            <td>2018-06-30</td>
+                                            <td>2018-06-14 19:38</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16810');">万达二层蓝鸟服饰专柜装修</a></td>
+                                            <td>15万</td>
+                                            <td>2018-06-18</td>
+                                            <td>2018-06-14 19:36</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16807');">皇冠名都3幢405室装修线缆</a></td>
+                                            <td>55万</td>
+                                            <td>2018-06-17</td>
+                                            <td>2018-06-14 10:41</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16806');">第三期厂房屋顶</a></td>
+                                            <td>36万</td>
+                                            <td>2018-06-30</td>
+                                            <td>2018-06-13 22:26</td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16815');">KK酒屋世界杯改造</a></td>
+                                            <td>10万</td>
+                                            <td>2018-06-15</td>
+                                            <td>2018-06-14 20:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td><a href="javascript:;" onclick="Fun.openDetailOpportunity('16813');">汇通大厦幕墙装饰照明工程</a></td>
+                                            <td>30万</td>
+                                            <td>2018-07-25</td>
+                                            <td>2018-06-14 19:46</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header"><span class="title">最近动弹</span></div>
+                <div class="layui-card-body">
+                    <ul class="layui-timeline">
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月23日 08时33分 <span class="layui-badge ">3天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">进行中</span> <span class="layui-badge layui-bg-blue">报价</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">Admin</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">LED光带L653：2.5元/米；L869：3.2元/米</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-23 08:33</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">长胜虹幕墙装饰工程</span>
+                                    <span class="layui-badge layui-bg-gray">汇通大厦幕墙装饰照明工程</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('68')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('68')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('68')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时56分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">日志</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">延期了，施工方的机械比较紧张又下雨，至少延期10天</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:56</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">广州渔夫水产养殖</span>
+                                    <span class="layui-badge layui-bg-gray">东方路养殖池</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('67')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('67')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('67')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时55分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">拜访</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">进场查看现场，开始铺地砖</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:55</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">苏城鑫建筑</span>
+                                    <span class="layui-badge layui-bg-gray">万达二层蓝鸟服饰专柜装修</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('66')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('66')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('66')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时54分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">拜访</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">查看店铺装修进度，已经搭龙骨了</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:54</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">通锦康装饰</span>
+                                    <span class="layui-badge layui-bg-gray">大明路13号眼博眼镜店</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('65')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('65')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('65')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时52分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">接待</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">刘小姐查看样品及批发价格，带走A635样品一个</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:52</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">南通安丽泰装饰工程</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('64')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('64')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('64')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时50分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">电话</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">咨询最近是否有光缆方面的需求</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:50</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">巴图装饰工程</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('63')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('63')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('63')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时49分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">电话</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">咨询最近是否有准备招标的项目，线缆采购情况</pre>
+                                <pre class="layui-text" style="font-size: 1em;padding: 0.4em 0;color:#FFB800;">没有固定供应商，以前在批发市场拿货，可以考虑固定的合作商</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:49</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">天威建筑装饰</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('62')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('62')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('62')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时48分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">电话</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">咨询最近是否有光缆方面的需求</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:48</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">正大建筑装潢</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('61')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('61')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('61')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时47分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">电话</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">咨询最近是否有光缆方面的需求</pre>
+                                <pre class="layui-text" style="font-size: 1em;padding: 0.4em 0;color:#FFB800;">10月份有个电气项目，可以考虑上门沟通</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:47</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">鼎兴建筑装饰工程</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('60')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('60')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('60')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时46分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <span class="layui-badge layui-bg-blue">电话</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">咨询最近是否有光缆方面的需求</pre>
+                                <pre class="layui-text" style="font-size: 1em;padding: 0.4em 0;color:#FFB800;">暂时有别的供应商合作，价位在120左右</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:46</p>
+                                <p style="font-size: 12px">动弹位置：</p>
+                                <p>
+                                    <span class="layui-badge layui-bg-gray">苏城鑫建筑</span>
+                                </p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.beginActivity('59')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Activity.endActivity('59')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openActivityRemark('59')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <script src="/static/module/activity/activity.js?t=1529976629220"></script>
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header"><span class="title">最近任务日程</span></div>
+                <div class="layui-card-body">
+                    <ul class="layui-timeline">
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 23时59分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">学习了解幕墙光灯装饰的施工流程</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 23:59</p>
+                                <p style="font-size: 12px">任务位置：</p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="beginTask('35')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="endTask('35')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openTaskRemark('35')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月14日 11时08分 <span class="layui-badge ">11天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">参观市政广场的一个小型电子展览会</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-14 11:08</p>
+                                <p style="font-size: 12px">任务位置：江苏省南通市通州区二甲镇萧家园</p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="beginTask('34')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="endTask('34')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openTaskRemark('34')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('121.201096', '32.061264')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月15日 11时04分 <span class="layui-badge ">10天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">接待电子电器行业协会刘秘书来公司交流</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-15 11:04</p>
+                                <p style="font-size: 12px">任务位置：</p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="beginTask('33')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="endTask('33')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openTaskRemark('33')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">06月21日 11时01分 <span class="layui-badge ">4天前</span></h3>
+                                <p>
+                                    <span class="layui-badge layui-bg-orange">新的</span> <i class="layui-icon">&#xe612;</i> 跟进人：<a href="javascript:void(0);" onclick="Fun.openDetailStaff('16802')">刘兴</a>
+                                </p>
+                                <pre class="layui-text" style="font-size: 1.14em;padding: 0.4em 0;color: #000000;">到供应商刘课文经理处了解新产品A6985并带回样品</pre>
+                                <p style="font-size: 12px">结束时间：2018-06-21 11:01</p>
+                                <p style="font-size: 12px">任务位置：</p>
+                                <div class="layui-btn-group mt5">
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="beginTask('32')"><i class="layui-icon">&#xe623;</i>开始</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="endTask('32')"><i class="layui-icon">&#xe643;</i>结束</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openTaskRemark('32')"><i class="layui-icon">&#xe6b2;</i>备注</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-primary" onclick="Fun.openMap('', '')"><i class="layui-icon">&#xe715;</i>位置</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <script src="/static/module/task/task.js?t=1529976629220"></script>
+                    <script>
+                        function beginTask(id) {
+                            Feng.confirm('确定开始吗？', function () {
+                                jQuery.post('/task/begin', { id: id }, function (data) {
+                                    layer.msg(data.message);
+                                }, 'json');
+                            });
+                        }
+
+                        function endTask(id) {
+                            Feng.confirm('确定结束吗？', function () {
+                                jQuery.post('/task/end', { id: id }, function (data) {
+                                    layer.msg(data.message);
+                                }, 'json');
+                            });
+
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

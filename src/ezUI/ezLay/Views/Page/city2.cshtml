@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "登录";
+    Layout = "";
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+    <fieldset class="layui-elem-field" style="margin: 20px;">
+        <legend>省市联动</legend>
+        <div class="layui-field-box">
+            <form class="layui-form layui-form-pane" action="javascript:;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择地区</label>
+                    <div class="layui-input-inline">
+                        <select name="P1" lay-filter="province">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="C1" lay-filter="city">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="A1" lay-filter="area">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+
+    <fieldset class="layui-elem-field" style="margin: 20px;">
+        <legend>选择结果</legend>
+        <div class="layui-field-box">
+            <form class="layui-form" action="javascript:;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">您选择了：</label>
+                    <label class="layui-form-label pca-label-province"></label>
+                    <label class="layui-form-label pca-label-city"></label>
+                    <label class="layui-form-label pca-label-area"></label>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+    <div style="margin: 20px;">
+        <table class="layui-table">
+            <tr>
+                <th colspan="4">补充说明</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>初始化方法</td>
+                <td>pca.init('select[name=P1]', 'select[name=C1]', 'select[name=A1]', '北京', '北京', '朝阳区');</td>
+                <td>如果初始化的地址不存在, 则还是默认的选择全部</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/layuiadmin/layui/layui.all.js"></script>
+    <script src="~/layuiadmin/modules/citys.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        pca.init('select[name=P1]', 'select[name=C1]', 'select[name=A1]', '北京', '北京', '朝阳区');
+    </script>
+</body>
+</html>

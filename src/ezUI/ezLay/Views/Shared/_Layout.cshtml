@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"] - ezWeb</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    @RenderSection("Heads", required: false)
+    <script>
+        /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <img src="/layuiadmin/layui/css/modules/layer/default/loading-0.gif" />
+    </div>
+    @RenderBody()
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/layuiadmin/layui/layui.js"></script>
+    <script src="/layuiadmin/global.js"></script>
+    @RenderSection("Scripts", required: false)
+    @Html.Raw(TempData["Message"] == null ? string.Empty : string.Format("<script>{0}</script>", TempData["Message"]))
+</body>
+</html>
+
+

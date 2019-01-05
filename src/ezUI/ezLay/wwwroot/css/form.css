@@ -1,0 +1,199 @@
+﻿/*基本样式*/
+body, html, form {
+    overflow: hidden;
+    height: 100%;
+    z-index: 1;
+    -moz-box-sizing: border-box; /*Firefox3.5+*/
+    -webkit-box-sizing: border-box; /*Safari3.2+*/
+    -o-box-sizing: border-box; /*Opera9.6*/
+    -ms-box-sizing: border-box; /*IE8*/
+    box-sizing: border-box; /*W3C标准(IE9+，Safari5.1+,Chrome10.0+,Opera10.6+都符合box-sizing的w3c标准语法)*/
+    color:#000;
+}
+.layui-container{
+    height:100%;
+    width:100%;
+    padding:0
+}
+/*提示信息*/
+.valid-tips {
+    float: left
+}
+.field-validation-error {
+    background: url('/images/admin/errotips.png') no-repeat;
+    color: red !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.valid-tips-span {
+    padding-left: 18px;
+}
+/*显示提示信息时不影响高度*/
+.layui-form-item .layui-inline {
+    height: 60px;
+    margin-bottom: 0;
+}
+
+/*.layui-form-item .layui-input-inline {
+    width: 170px;
+}
+
+.layui-input {
+    width: 190px;
+}*/
+
+.layui-form-areafull {
+    width: 500px;
+}
+
+/*最下面一行展开项显示全*/
+.layui-layout, .layui-main {
+    height: 100%;
+}
+/*列数相同时居中*/
+.layui-main {
+    text-align: center;
+    padding: 0;
+    margin: 0 !important;
+}
+.layui-form-item{
+    margin-bottom:0;
+}
+
+
+
+/*内容多时需单独控制的样式*/
+.form-special {
+    margin: 0 auto;
+    width: 920px;
+}
+.form-special .BtnCenter {
+    text-align: center;
+    margin: 0 auto
+}
+.form-center {
+    margin: 0 auto;
+}
+
+
+/*有单独一个时*/ 
+.form-special-one {
+    margin: 0 auto;
+    width: 660px;
+}
+    .form-special-one .form-center {
+        text-align: center;
+    }
+
+.layui-form-height{
+    height:100%;
+}
+
+
+
+/*新弹窗样式*/
+.layui-outBg {
+    background-color: #ebebeb;
+}
+
+.layui-contentall {
+    height: 100%;
+    background-color: #fff;
+    width: 1000px;
+    margin: auto;
+    position:relative;
+}
+
+    .layui-contentall .layui-form {
+        overflow: auto;
+        padding-top: 20px;
+        height: 81%;
+    }
+
+.layui-form-item .layui-form {
+    padding-top: 0px;
+}
+.layui-content-title {
+    height: 60px;
+    border-bottom: 1px dashed #999;
+    text-align: left;
+    font-size: 16px;
+    line-height: 60px;
+    color: #666;
+    font-weight: bold;
+}
+
+    .layui-content-title img {
+        line-height: 50px;
+        padding: 6px 10px 10px 18px;
+    }
+
+.layui-content-btn {
+    position: absolute;
+    bottom: 0;
+    width: 980px;
+    height: 50px;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #dedede;
+}
+
+.layui-main-odd {
+    text-align: left;
+}
+
+    .layui-main-odd .layui-form {
+        margin-left: 150px;
+        height:81%;
+    }
+    .layui-main-odd .layui-content-btn {
+        left:0;
+    }
+.layui-main-one{
+    width:450px;
+    margin:auto;
+}
+
+@media screen and (min-width: 1900px){
+    .layui-contentall .layui-form,.layui-main-odd .layui-form {
+        height: 85%;
+    }
+}
+
+
+/*form下含有表格显示滚动条*/
+.layui-form-item .layui-form {
+    overflow: hidden;
+    margin-left:0;
+}
+.change-form-TW {
+    width:79%
+}
+/**treeselect*/
+.layui-form-select .layui-tree {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 42px;
+    padding: 5px 0;
+    z-index: 999;
+    min-width: 100%;
+    border: 1px solid #d2d2d2;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12);
+    box-sizing: border-box;
+}
+
+.layui-form-selected .layui-tree {
+    display: block;
+}
+
+.treeClick cite {
+    color: #fff !important;
+}
